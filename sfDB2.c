@@ -16,7 +16,7 @@ table *sfDB2_mkTable (uint8_t *name, uint16_t columns, uint8_t **column_name) {
 	table *newTable = malloc (sizeof (table));
 	assert (newTable);
 
-	newTable->name = strdup (name);
+	newTable->name = (uint8_t *) strdup ((char *) name);
 	assert (newTable->name);
 	newTable->columns = columns;
 	newTable->head.status = 1;
@@ -25,7 +25,7 @@ table *sfDB2_mkTable (uint8_t *name, uint16_t columns, uint8_t **column_name) {
 	newTable->column_name = malloc (columns * (sizeof (uint8_t *)));
 	assert (newTable->column_name);
 	for (x = 0; x < columns; x++) {
-		newTable->column_name[x] = strdup (column_name[x]);
+		newTable->column_name[x] = (uint8_t *) strdup ((char *) column_name[x]);
 		assert (newTable->column_name[x]);
 	}
 
