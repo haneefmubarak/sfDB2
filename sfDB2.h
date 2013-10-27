@@ -1,3 +1,5 @@
+#pragma once
+
 #define SFDB2_SHARD_BYTES 0
 
 typedef uint8_t * IDMatch;
