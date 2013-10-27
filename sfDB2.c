@@ -20,6 +20,7 @@ table *sfDB2_mkTable (uint8_t *name, uint16_t columns, uint8_t **column_name) {
 	assert (newTable->name);
 	newTable->columns = columns;
 	newTable->head.status = 1;
+	newTable->rowcount = 0;
 
 	newTable->column_name = malloc (columns * (sizeof (uint8_t *)));
 	assert (newTable->column_name);
