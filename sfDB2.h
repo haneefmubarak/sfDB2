@@ -33,3 +33,8 @@ typedef struct {
 	uint64_t rowcount;
         uint16_t columns;
 } table;
+
+table	*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
+				const uint8t **column_name);
+step	*sfDB2_mkStep	(const table *curTable, const uint8_t *id,
+				const uint8_t id_byte);

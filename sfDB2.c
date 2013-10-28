@@ -10,7 +10,8 @@
 
 #include "sfDB2.h"
 
-table *sfDB2_mkTable (uint8_t *name, uint16_t columns, uint8_t **column_name) {
+table *sfDB2_mkTable (const uint8_t *name, const uint16_t columns,
+			const uint8_t **column_name) {
 	int32_t x;
 
 	table *newTable = calloc (1, sizeof (table));
@@ -32,7 +33,8 @@ table *sfDB2_mkTable (uint8_t *name, uint16_t columns, uint8_t **column_name) {
 	return newTable;
 }
 
-step *sfDB2_mkStep (const table *curTable, const uint8_t *id, const uint8_t id_byte) {
+step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
+			const uint8_t id_byte) {
 	int16_t x, status;
 	step *curStep;
 	coordinate *oldCoord;
