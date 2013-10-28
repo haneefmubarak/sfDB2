@@ -10,6 +10,12 @@
 
 #include "sfDB2.h"
 
+int main (void) {
+	printf ("sizeof:\n\tstep:\t%lu\n\trow:\t%lu\n\tcoordinate:\t%lu\n\ttable:\t%lu\n",
+		sizeof (step), sizeof (row), sizeof (coordinate), sizeof (table));
+	return 0;
+}
+
 table *sfDB2_mkTable (const uint8_t *name, const uint16_t columns,
 			const uint8_t **column_name) {
 	int32_t x;
@@ -78,10 +84,4 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 	}
 
 	return newStep;
-}
-
-int main (void) {
-	printf ("sizeof:\n\tstep:\t%lu\n\trow:\t%lu\n\tcoordinate:\t%lu\n\ttable:\t%lu\n",
-		sizeof (step), sizeof (row), sizeof (coordinate), sizeof (table));
-	return 0;
 }
