@@ -36,3 +36,4 @@ table	*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
 				const uint8_t **column_name);
 step	*sfDB2_mkStep	(const table *curTable, const uint8_t *id,
 				const uint8_t id_byte);
+step	*sfDB2_navStep (const table *curTable, const uint8_t *id);
