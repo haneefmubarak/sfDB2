@@ -45,7 +45,7 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 	step *curStep;
 	coordinate *oldCoord;
 
-	//assert (id_byte < (SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES));
+	assert (id_byte < (SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES));
 	assert (curTable->head.status);
 
 	curStep = (step *) &(curTable->head);
