@@ -26,8 +26,7 @@ typedef struct {
 
 typedef struct {
         uint8_t *name, **column_name;
-        row **rows;
-        step head;
+        step head, rowhead;
 	uint64_t rowcount;
         uint16_t columns;
 } table;
