@@ -85,3 +85,18 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 
 	return newStep;
 }
+
+step *sfDB2_navStep (const table *curTable, const uint8_t *id) {
+	uint16_t x, status;
+	step *curStep = (step *) &(curTable->head);
+
+	for (x = 0; status; x++) {
+		curStep = curStep->next[id[x]];
+		status = (curStep->type[id[x]] == 1);
+	}
+
+	// Ensure that we have either hit an empty * or row *, respectively
+	assert ((curStep->type[id[x]] == 0) || (curStep->type[id[x]] == 2));
+
+	return curStep;
+}

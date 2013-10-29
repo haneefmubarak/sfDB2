@@ -2,8 +2,6 @@
 
 #define SFDB2_SHARD_BYTES 0
 
-typedef uint8_t * IDMatch;
-
 extern uint8_t invalid_sentinel;
 #define INVALID_POINTER ((void *)&invalid_sentinel)
 
@@ -20,7 +18,7 @@ typedef struct {
 } row;
 
 typedef struct {
-        IDMatch *match;
+        uint8_t *match;
         uint8_t id[SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES];
         uint32_t matches;
         uint8_t status;
@@ -35,6 +33,6 @@ typedef struct {
 } table;
 
 table	*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
-				const uint8t **column_name);
+				const uint8_t **column_name);
 step	*sfDB2_mkStep	(const table *curTable, const uint8_t *id,
 				const uint8_t id_byte);
