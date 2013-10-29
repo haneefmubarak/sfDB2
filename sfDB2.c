@@ -54,8 +54,11 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 	status = curStep->type[id[0]];
 	for (x = 0; status; x++) {
 		curStep = curStep->next[id[x]];
-		status = (!(x == id_byte) && (curStep->type[id[x]] == 1));
+		status = ((x != id_byte) && (curStep->type[id[x]] == 1));
 	}
+
+	// If we're already here, just send the thing back
+	if (x == id_byte) { return curStep; }
 
 	// Ensure that we have either hit an empty * or row *, respectively
 	assert ((curStep->type[id[x]] == 0) || (curStep->type[id[x]] == 2));
