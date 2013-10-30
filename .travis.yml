@@ -1,0 +1,1 @@
+script: "clang -O2 sfDB2.c && ./a.out"
