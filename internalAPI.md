@@ -50,12 +50,15 @@ int main (void) {
 
 	if ((void *) urandom == (void *) error_sentinel_1) {
 		fputs (error_sentinel_1, stderr);
+		// Even it doesn't matter here, it might somewhere else
+		free (error_sentinel_1);
 		fputc ('\n', stderr);
 		return 1;
 	}
 
 	else if ((void *) urandom == (void *) error_sentinel_2) {
 		fputs (error_sentinel_2, stderr);
+		free (error_sentinel_2)
 		fputc ('\n', stderr);
 		return 2;
 	}
