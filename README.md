@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/haneefmubarak/sfDB2.png?branch=develop)](https://travis-ci.org/haneefmubarak/sfDB2)
+
 sfDB2
 =====
 
