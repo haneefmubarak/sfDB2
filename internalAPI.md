@@ -20,25 +20,25 @@ string where:
  - the next three bytes == the substring ` - `
  - the rest of the string is the error message, explanation, and whatever else (continuous string)
 
-The exception is that `error_sentinel_1` is always assumed to be some sort of allocation or
-file IO error.
+The exception is that `error_sentinel[0]` is always assumed to be some sort of allocation or
+file IO error (`allocORfile`) and therefore has no string.
 
 Example (as of now, the following code may or may not work):
 
 ```C
 // invalid_sentinel list
-extern uint8_t *error_sentinel_1, *error_sentinel_2, *error_sentinel_3;
+extern uint8_t *error_sentinel[4];
 
 // function that we are calling
 FILE *sfDB2_geturandomfp () {
 	FILE *fp = fopen ("/dev/urandom", "r");
-	// Check that the file was opened; return error_1 allocORfile otherwise
-	if (!fp) { return (FILE *) error_sentinel_1; }
+	// Check that the file was opened; return error_0 allocORfile otherwise
+	if (!fp) { error_sentinel[0] = malloc (1); return (FILE *) error_sentinel[0]; }
 
-	// Ensure unbuffered IO; return error_2 with message otherwise
+	// Ensure unbuffered IO; return error_1 with message otherwise
 	if (setvbuf (fp, NULL, _IONBF, 0)) {
-		error_sentinel_2 = strdup ("error 0x02 - could not set unbuffered IO");
-		return (FILE *) error_sentinel_2;
+		error_sentinel[1] = strdup ("error 0x01 - could not set unbuffered IO");
+		return (FILE *) error_sentinel[0];
 	}
 
 	return fp;
@@ -48,17 +48,17 @@ FILE *sfDB2_geturandomfp () {
 int main (void) {
 	FILE *urandom = sfDB2_geturandomfp();
 
-	if ((void *) urandom == (void *) error_sentinel_1) {
-		fputs (error_sentinel_1, stderr);
+	if ((void *) urandom == (void *) error_sentinel[0]) {
+		fputs (error_sentinel[0], stderr);
 		// Even it doesn't matter here, it might somewhere else
-		free (error_sentinel_1);
+		free (error_sentinel[0]);
 		fputc ('\n', stderr);
 		return 1;
 	}
 
-	else if ((void *) urandom == (void *) error_sentinel_2) {
-		fputs (error_sentinel_2, stderr);
-		free (error_sentinel_2)
+	else if ((void *) urandom == (void *) error_sentinel[1]) {
+		fputs (error_sentinel[1], stderr);
+		free (error_sentinel[1])
 		fputc ('\n', stderr);
 		return 2;
 	}
