@@ -10,6 +10,8 @@
 
 #include "sfDB2.h"
 
+uint8_t *error_sentinel[16];
+
 int main (void) {
 	printf ("sizeof:\n\tstep:\t%lu\n\trow:\t%lu\n\tcoordinate:\t%lu\n\ttable:\t%lu\n",
 		sizeof (step), sizeof (row), sizeof (coordinate), sizeof (table));
@@ -48,8 +50,9 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 	step *curStep;
 	coordinate *oldCoord;
 
-	if (!(id_byte < (SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES)) {
-		error_sentinel[1] = strdup ("error 0x01 - id_byte is larger than its maximum");
+	if (!(id_byte < (SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES))) {
+		error_sentinel[1] = (uint8_t *) strdup
+			("error 0x01 - id_byte is larger than its maximum");
 		return (step *) error_sentinel[1];
 	}
 
