@@ -48,7 +48,11 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 	step *curStep;
 	coordinate *oldCoord;
 
-	assert (id_byte < (SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES));
+	if !(id_byte < (SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES) {
+		error_sentinel[1] = strdup ("error 0x01 - id_byte is larger than its maximum");
+		return (step *) error_sentinel[1];
+	}
+
 	assert (curTable->head.status);
 
 	curStep = (step *) &(curTable->head);
