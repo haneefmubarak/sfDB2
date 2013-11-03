@@ -1,7 +1,7 @@
 #include "sfDB2.h"
 
-step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
-			const uint8_t id_byte) {
+step *sfDB2_mkStep (const table *curTable, const uint16_t column,
+			const uint8_t *id, const uint8_t id_byte) {
 	int16_t x, status;
 	step *curStep;
 	coordinate *oldCoord;
@@ -12,9 +12,9 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 		return (step *) error_sentinel[1];
 	}
 
-	assert (curTable->head.status);
+	assert (curTable->head[column]->status);
 
-	curStep = (step *) &(curTable->head);
+	curStep = (curTable->head[column]);
 
 	// Traverse the tree
 	status = curStep->type[id[0]];
@@ -49,15 +49,16 @@ step *sfDB2_mkStep (const table *curTable, const uint8_t *id,
 
 	// Done, but if we aren't at the id_byte we want, get there
 	if (x < id_byte) {
-		newStep = sfDB2_mkStep (curTable, id, id_byte);
+		newStep = sfDB2_mkStep (curTable, column, id, id_byte);
 	}
 
 	return newStep;
 }
 
-step *sfDB2_navStep (const table *curTable, const uint8_t *id) {
+step *sfDB2_navStep (const table *curTable, const uint16_t column,
+			const uint8_t *id) {
 	uint16_t x, status;
-	step *curStep = (step *) &(curTable->head);
+	step *curStep = (curTable->head[column]);
 
 	for (x = 0; status; x++) {
 		curStep = curStep->next[id[x]];
