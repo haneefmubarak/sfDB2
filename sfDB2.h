@@ -38,7 +38,7 @@ typedef struct {
 
 typedef struct {
 	uint8_t *name, **column_name;
-	step *head;
+	step **head;
 	uint64_t rowcount;
 	uint16_t columns;
 } table;
