@@ -23,6 +23,9 @@ string where:
 The exception is that `error_sentinel[0]` is always assumed to be some sort of allocation or
 file IO error (`allocORfile`) and therefore has no string.
 
+Also, errors that will cause unrecoverable errors should simply terminate the program via an
+`assert()`.
+
 Example (as of now, the following code may or may not work):
 
 ```C
