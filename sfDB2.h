@@ -2,8 +2,10 @@
 
 #define SFDB2_SHARD_BYTES 0
 
-extern uint8_t invalid_sentinel;
-#define INVALID_POINTER ((void *)&invalid_sentinel)
+//extern uint8_t invalid_sentinel;
+//#define INVALID_POINTER ((void *)&invalid_sentinel)
+
+extern uint8_t *error_sentinel[16];
 
 typedef struct {
 	void *next[256];
