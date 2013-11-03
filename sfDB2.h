@@ -1,5 +1,15 @@
 #pragma once
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <string.h>
+#include <stdint.h>
+
+#include <assert.h>
+
+#include <openssl/sha.h>
+
 #define SFDB2_SHARD_BYTES 0
 
 //extern uint8_t invalid_sentinel;
