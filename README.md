@@ -29,6 +29,8 @@ Some of the features and/or implementations that `sfDB2` looks to support includ
  - Prevent ambiguity by allocating a unique, incremented id for each row in a table, thus
  also eliminating the possibility of two rows being written to the coordinate
 
-More may be added in the future
+_Want to add something **and** have an idea on how it could be implemented?_ Just
+[make a new issue](https://github.com/haneefmubarak/sfDB2/issues/new) with your idea and
+its implementation.
 
 -Haneef Mubarak
