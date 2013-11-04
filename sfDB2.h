@@ -10,8 +10,12 @@
 
 #include <openssl/sha.h>
 
+#ifndef SFDB2_SHARD_BYTES
 #define SFDB2_SHARD_BYTES 0
+#endif
+#ifndef SFDB2_PRAGMA_PACK
 #define SFDB2_PRAGMA_PACK 1
+#endif
 
 //extern uint8_t invalid_sentinel;
 //#define INVALID_POINTER ((void *)&invalid_sentinel)
