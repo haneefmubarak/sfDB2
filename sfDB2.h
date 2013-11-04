@@ -15,6 +15,8 @@
 //extern uint8_t invalid_sentinel;
 //#define INVALID_POINTER ((void *)&invalid_sentinel)
 
+#pragma pack(push,1)
+
 extern uint8_t *error_sentinel[16];
 
 typedef struct {
@@ -42,6 +44,8 @@ typedef struct {
 	uint64_t rowcount;
 	uint16_t columns;
 } table;
+
+#pragma pack(pop)
 
 table	*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
 				const uint8_t **column_name);
