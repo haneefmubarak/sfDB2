@@ -11,11 +11,14 @@
 #include <openssl/sha.h>
 
 #define SFDB2_SHARD_BYTES 0
+#define SFDB2_PRAGMA_PACK 1
 
 //extern uint8_t invalid_sentinel;
 //#define INVALID_POINTER ((void *)&invalid_sentinel)
 
+#if SFDB2_PRAGMA_PACK > 0
 #pragma pack(push,1)
+#endif
 
 extern uint8_t *error_sentinel[16];
 
@@ -45,7 +48,9 @@ typedef struct {
 	uint16_t columns;
 } table;
 
+#if SFDB2_PRAGMA_PACK > 0
 #pragma pack(pop)
+#endif
 
 table	*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
 				const uint8_t **column_name);
