@@ -47,6 +47,7 @@ typedef struct {
 
 typedef struct {
 	uint8_t *name, **column_name;
+	uint8_t config[32];
 	step **head;
 	uint64_t rowcount;
 	uint16_t columns;
@@ -57,7 +58,7 @@ typedef struct {
 #endif
 
 table	*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
-				const uint8_t **column_name);
+				const uint8_t **column_name, uint8_t config[32]);
 step	*sfDB2_mkStep	(const table *curTable, const uint16_t column,
 				const uint8_t *id, const uint8_t id_byte);
 step	*sfDB2_navStep	(const table *curTable, const uint16_t column,

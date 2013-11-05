@@ -1,7 +1,7 @@
 #include "sfDB2.h"
 
 table *sfDB2_mkTable (const uint8_t *name, const uint16_t columns,
-			const uint8_t **column_name) {
+			const uint8_t **column_name, uint8_t config[32]) {
 	int32_t x;
 
 	// Fill the table with zeros so we don't have to zero specific fields
@@ -13,6 +13,9 @@ table *sfDB2_mkTable (const uint8_t *name, const uint16_t columns,
 	assert (newTable->name);
 	newTable->columns = columns;
 	newTable->rowcount = 0;
+
+	// Set the config array
+	assert (memcpy (newTable->config, config, 32) == newTable->config);
 
 	// malloc the columns
 	newTable->column_name = malloc (columns * (sizeof (uint8_t *)));
