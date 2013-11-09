@@ -49,6 +49,7 @@ typedef struct {
 	row **match;		// pointers to the indexed matches
 	uint8_t *matchtext;	// what exactly was matched
 	uint8_t id[SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES]; // unique SHA1 hash for indexing
+	uint64_t mtlength;	// length of the matchtext
 	uint32_t matches;	// number of indexed matches
 	uint8_t status;		// status of the coordinate
 } coordinate;
@@ -77,3 +78,7 @@ step	*sfDB2_mkStep	(const table *curTable, const uint16_t column,
 // Get to the step matching an id in the respective tree
 step	*sfDB2_navStep	(const table *curTable, const uint16_t column,
 				const uint8_t *id);
+
+// If the coord doesn't exist, make it
+coordinate	*sfDB2_mkCoord	(const table *curTable, const uint16_t column,
+				const uint8_t matchtext, const uint64_t mtlength);
