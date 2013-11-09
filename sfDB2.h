@@ -46,7 +46,8 @@ typedef struct {
 
 // A unique entry in a columns, used for indexing the rows
 typedef struct {
-	row *match;		// pointers to the indexed matches
+	row **match;		// pointers to the indexed matches
+	uint8_t *matchtext;	// what exactly was matched
 	uint8_t id[SHA_DIGEST_LENGTH - SFDB2_SHARD_BYTES]; // unique SHA1 hash for indexing
 	uint32_t matches;	// number of indexed matches
 	uint8_t status;		// status of the coordinate
