@@ -63,20 +63,25 @@ typedef struct {
 	uint16_t columns;	// number of columns in this table
 } table;
 
+typedef struct {
+	step *endstep;		// the step to be returned
+	uint8_t depth;		// how far down the tree ^ is
+} navStepReturn;
+
 #if SFDB2_PRAGMA_PACK > 0
 #pragma pack(pop)
 #endif
 
 // Make a table and initialize it
-table	*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
+table		*sfDB2_mkTable	(const uint8_t *name, const uint16_t columns,
 				const uint8_t **column_name, uint8_t config[32]);
 
 // Make a step if it doesn't already exist
-step	*sfDB2_mkStep	(const table *curTable, const uint16_t column,
+step		*sfDB2_mkStep	(const table *curTable, const uint16_t column,
 				const uint8_t *id, const uint8_t id_byte);
 
 // Get to the step matching an id in the respective tree
-step	*sfDB2_navStep	(const table *curTable, const uint16_t column,
+navStepReturn	sfDB2_navStep	(const table *curTable, const uint16_t column,
 				const uint8_t *id);
 
 // If the coord doesn't exist, make it

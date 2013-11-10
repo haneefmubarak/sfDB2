@@ -55,7 +55,7 @@ step *sfDB2_mkStep (const table *curTable, const uint16_t column,
 	return newStep;
 }
 
-step *sfDB2_navStep (const table *curTable, const uint16_t column,
+navStepReturn sfDB2_navStep (const table *curTable, const uint16_t column,
 			const uint8_t *id) {
 	uint16_t x, status;
 	step *curStep = (curTable->head[column]);
@@ -65,8 +65,16 @@ step *sfDB2_navStep (const table *curTable, const uint16_t column,
 		status = (curStep->type[id[x]] == 1);
 	}
 
+	// Reverse the last increment
+	x--;
+
 	// Ensure that we have either hit an empty * or row *, respectively
 	assert ((curStep->type[id[x]] == 0) || (curStep->type[id[x]] == 2));
 
-	return curStep;
+	// Pack up the data and send it
+	navStepReturn nsr;
+	nsr.endstep = curStep;
+	nsr.depth = x;
+
+	return nsr;
 }
