@@ -86,4 +86,4 @@ navStepReturn	sfDB2_navStep	(const table *curTable, const uint16_t column,
 
 // If the coord doesn't exist, make it
 coordinate	*sfDB2_mkCoord	(const table *curTable, const uint16_t column,
-				const uint8_t matchtext, const uint64_t mtlength);
+				const uint8_t *matchtext, const uint64_t mtlength);
